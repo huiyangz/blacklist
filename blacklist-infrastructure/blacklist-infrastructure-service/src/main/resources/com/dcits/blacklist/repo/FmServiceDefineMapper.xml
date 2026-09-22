@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.blacklist.repo.FmServiceDefineMapper">
+    <resultMap id="BaseResultMap" type="com.dcits.blacklist.entity.FmServiceDefine">
+        <id column="MESSAGE_CODE" property="messageCode" jdbcType="VARCHAR" />
+        <id column="SERVICE_CODE" property="serviceCode" jdbcType="VARCHAR" />
+        <id column="MESSAGE_TYPE" property="messageType" jdbcType="VARCHAR" />
+        <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+        <result column="ACROSS_BRAN_CHECK_FLAG" property="acrossBranCheckFlag" jdbcType="VARCHAR" />
+        <result column="BUSI_CATEGORY" property="busiCategory" jdbcType="VARCHAR" />
+        <result column="SERVICE_STATUS" property="serviceStatus" jdbcType="VARCHAR" />
+        <result column="BLACKLIST_CHECK_FLAG" property="blacklistCheckFlag" jdbcType="VARCHAR" />
+        <result column="MULTI_CORP_CHECK_FLAG" property="multiCorpCheckFlag" jdbcType="VARCHAR" />
+        <result column="ALLOW_REVERSE_FLAG" property="allowReverseFlag" jdbcType="VARCHAR" />
+        <result column="WHITE_LIST_CHECK_FLAG" property="whiteListCheckFlag" jdbcType="VARCHAR" />
+        <result column="TRAN_TIMESTAMP" property="tranTimestamp" jdbcType="VARCHAR" />
+        <result column="BUSI_SUB_CLASS" property="busiSubClass" jdbcType="VARCHAR" />
+        <result column="CLIENT_CHECK_FLAG" property="clientCheckFlag" jdbcType="VARCHAR" />
+        <result column="URL" property="url" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
+        MESSAGE_CODE,        COMPANY,        ACROSS_BRAN_CHECK_FLAG,        BUSI_CATEGORY,        SERVICE_STATUS,        BLACKLIST_CHECK_FLAG,        SERVICE_CODE,        MULTI_CORP_CHECK_FLAG,        ALLOW_REVERSE_FLAG,        MESSAGE_TYPE,        WHITE_LIST_CHECK_FLAG,        TRAN_TIMESTAMP,        BUSI_SUB_CLASS,        CLIENT_CHECK_FLAG,        URL    </sql>
+
+    <select id="selectByExample" parameterType="com.dcits.blacklist.entity.FmServiceDefineExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from FM_SERVICE_DEFINE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from FM_SERVICE_DEFINE
+        where MESSAGE_CODE = #{messageCode,jdbcType=VARCHAR}
+          and SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR}
+          and MESSAGE_TYPE = #{messageType,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete from FM_SERVICE_DEFINE
+        where MESSAGE_CODE = #{messageCode,jdbcType=VARCHAR}
+          and SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR}
+          and MESSAGE_TYPE = #{messageType,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.dcits.blacklist.entity.FmServiceDefineExample">
+        delete from FM_SERVICE_DEFINE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.dcits.blacklist.entity.FmServiceDefine">
+        insert into FM_SERVICE_DEFINE
+        (
+            MESSAGE_CODE,            COMPANY,            ACROSS_BRAN_CHECK_FLAG,            BUSI_CATEGORY,            SERVICE_STATUS,            BLACKLIST_CHECK_FLAG,            SERVICE_CODE,            MULTI_CORP_CHECK_FLAG,            ALLOW_REVERSE_FLAG,            MESSAGE_TYPE,            WHITE_LIST_CHECK_FLAG,            TRAN_TIMESTAMP,            BUSI_SUB_CLASS,            CLIENT_CHECK_FLAG,            URL        )
+        values
+        (
+            #{messageCode,jdbcType=VARCHAR},            #{company,jdbcType=VARCHAR},            #{acrossBranCheckFlag,jdbcType=VARCHAR},            #{busiCategory,jdbcType=VARCHAR},            #{serviceStatus,jdbcType=VARCHAR},            #{blacklistCheckFlag,jdbcType=VARCHAR},            #{serviceCode,jdbcType=VARCHAR},            #{multiCorpCheckFlag,jdbcType=VARCHAR},            #{allowReverseFlag,jdbcType=VARCHAR},            #{messageType,jdbcType=VARCHAR},            #{whiteListCheckFlag,jdbcType=VARCHAR},            #{tranTimestamp,jdbcType=VARCHAR},            #{busiSubClass,jdbcType=VARCHAR},            #{clientCheckFlag,jdbcType=VARCHAR},            #{url,jdbcType=VARCHAR}        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.dcits.blacklist.entity.FmServiceDefine">
+        insert into FM_SERVICE_DEFINE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="messageCode != null">
+                MESSAGE_CODE,
+            </if>
+            <if test="company != null">
+                COMPANY,
+            </if>
+            <if test="acrossBranCheckFlag != null">
+                ACROSS_BRAN_CHECK_FLAG,
+            </if>
+            <if test="busiCategory != null">
+                BUSI_CATEGORY,
+            </if>
+            <if test="serviceStatus != null">
+                SERVICE_STATUS,
+            </if>
+            <if test="blacklistCheckFlag != null">
+                BLACKLIST_CHECK_FLAG,
+            </if>
+            <if test="serviceCode != null">
+                SERVICE_CODE,
+            </if>
+            <if test="multiCorpCheckFlag != null">
+                MULTI_CORP_CHECK_FLAG,
+            </if>
+            <if test="allowReverseFlag != null">
+                ALLOW_REVERSE_FLAG,
+            </if>
+            <if test="messageType != null">
+                MESSAGE_TYPE,
+            </if>
+            <if test="whiteListCheckFlag != null">
+                WHITE_LIST_CHECK_FLAG,
+            </if>
+            <if test="tranTimestamp != null">
+                TRAN_TIMESTAMP,
+            </if>
+            <if test="busiSubClass != null">
+                BUSI_SUB_CLASS,
+            </if>
+            <if test="clientCheckFlag != null">
+                CLIENT_CHECK_FLAG,
+            </if>
+            <if test="url != null">
+                URL,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="messageCode != null">
+                #{messageCode,jdbcType=VARCHAR},
+            </if>
+            <if test="company != null">
+                #{company,jdbcType=VARCHAR},
+            </if>
+            <if test="acrossBranCheckFlag != null">
+                #{acrossBranCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="busiCategory != null">
+                #{busiCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceStatus != null">
+                #{serviceStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="blacklistCheckFlag != null">
+                #{blacklistCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCode != null">
+                #{serviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="multiCorpCheckFlag != null">
+                #{multiCorpCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="allowReverseFlag != null">
+                #{allowReverseFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="messageType != null">
+                #{messageType,jdbcType=VARCHAR},
+            </if>
+            <if test="whiteListCheckFlag != null">
+                #{whiteListCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="tranTimestamp != null">
+                #{tranTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="busiSubClass != null">
+                #{busiSubClass,jdbcType=VARCHAR},
+            </if>
+            <if test="clientCheckFlag != null">
+                #{clientCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.dcits.blacklist.entity.FmServiceDefineExample" resultType="java.lang.Long">
+        select count(*) from FM_SERVICE_DEFINE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map">
+        update FM_SERVICE_DEFINE
+        <set>
+            <if test="row.messageCode != null">
+                MESSAGE_CODE = #{row.messageCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.company != null">
+                COMPANY = #{row.company,jdbcType=VARCHAR},
+            </if>
+            <if test="row.acrossBranCheckFlag != null">
+                ACROSS_BRAN_CHECK_FLAG = #{row.acrossBranCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.busiCategory != null">
+                BUSI_CATEGORY = #{row.busiCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="row.serviceStatus != null">
+                SERVICE_STATUS = #{row.serviceStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="row.blacklistCheckFlag != null">
+                BLACKLIST_CHECK_FLAG = #{row.blacklistCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.serviceCode != null">
+                SERVICE_CODE = #{row.serviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.multiCorpCheckFlag != null">
+                MULTI_CORP_CHECK_FLAG = #{row.multiCorpCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.allowReverseFlag != null">
+                ALLOW_REVERSE_FLAG = #{row.allowReverseFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.messageType != null">
+                MESSAGE_TYPE = #{row.messageType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.whiteListCheckFlag != null">
+                WHITE_LIST_CHECK_FLAG = #{row.whiteListCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.tranTimestamp != null">
+                TRAN_TIMESTAMP = #{row.tranTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="row.busiSubClass != null">
+                BUSI_SUB_CLASS = #{row.busiSubClass,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientCheckFlag != null">
+                CLIENT_CHECK_FLAG = #{row.clientCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.url != null">
+                URL = #{row.url,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map">
+        update FM_SERVICE_DEFINE
+        set
+            MESSAGE_CODE = #{row.messageCode,jdbcType=VARCHAR},            COMPANY = #{row.company,jdbcType=VARCHAR},            ACROSS_BRAN_CHECK_FLAG = #{row.acrossBranCheckFlag,jdbcType=VARCHAR},            BUSI_CATEGORY = #{row.busiCategory,jdbcType=VARCHAR},            SERVICE_STATUS = #{row.serviceStatus,jdbcType=VARCHAR},            BLACKLIST_CHECK_FLAG = #{row.blacklistCheckFlag,jdbcType=VARCHAR},            SERVICE_CODE = #{row.serviceCode,jdbcType=VARCHAR},            MULTI_CORP_CHECK_FLAG = #{row.multiCorpCheckFlag,jdbcType=VARCHAR},            ALLOW_REVERSE_FLAG = #{row.allowReverseFlag,jdbcType=VARCHAR},            MESSAGE_TYPE = #{row.messageType,jdbcType=VARCHAR},            WHITE_LIST_CHECK_FLAG = #{row.whiteListCheckFlag,jdbcType=VARCHAR},            TRAN_TIMESTAMP = #{row.tranTimestamp,jdbcType=VARCHAR},            BUSI_SUB_CLASS = #{row.busiSubClass,jdbcType=VARCHAR},            CLIENT_CHECK_FLAG = #{row.clientCheckFlag,jdbcType=VARCHAR},            URL = #{row.url,jdbcType=VARCHAR}        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.dcits.blacklist.entity.FmServiceDefine">
+        update FM_SERVICE_DEFINE
+        <set>
+            <if test="company != null">
+                COMPANY = #{company,jdbcType=VARCHAR},
+            </if>
+            <if test="acrossBranCheckFlag != null">
+                ACROSS_BRAN_CHECK_FLAG = #{acrossBranCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="busiCategory != null">
+                BUSI_CATEGORY = #{busiCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceStatus != null">
+                SERVICE_STATUS = #{serviceStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="blacklistCheckFlag != null">
+                BLACKLIST_CHECK_FLAG = #{blacklistCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="multiCorpCheckFlag != null">
+                MULTI_CORP_CHECK_FLAG = #{multiCorpCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="allowReverseFlag != null">
+                ALLOW_REVERSE_FLAG = #{allowReverseFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="whiteListCheckFlag != null">
+                WHITE_LIST_CHECK_FLAG = #{whiteListCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="tranTimestamp != null">
+                TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="busiSubClass != null">
+                BUSI_SUB_CLASS = #{busiSubClass,jdbcType=VARCHAR},
+            </if>
+            <if test="clientCheckFlag != null">
+                CLIENT_CHECK_FLAG = #{clientCheckFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                URL = #{url,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where MESSAGE_CODE = #{messageCode,jdbcType=VARCHAR}
+          and SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR}
+          and MESSAGE_TYPE = #{messageType,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.dcits.blacklist.entity.FmServiceDefine">
+        update FM_SERVICE_DEFINE
+        set
+            COMPANY = #{company,jdbcType=VARCHAR},            ACROSS_BRAN_CHECK_FLAG = #{acrossBranCheckFlag,jdbcType=VARCHAR},            BUSI_CATEGORY = #{busiCategory,jdbcType=VARCHAR},            SERVICE_STATUS = #{serviceStatus,jdbcType=VARCHAR},            BLACKLIST_CHECK_FLAG = #{blacklistCheckFlag,jdbcType=VARCHAR},            MULTI_CORP_CHECK_FLAG = #{multiCorpCheckFlag,jdbcType=VARCHAR},            ALLOW_REVERSE_FLAG = #{allowReverseFlag,jdbcType=VARCHAR},            WHITE_LIST_CHECK_FLAG = #{whiteListCheckFlag,jdbcType=VARCHAR},            TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR},            BUSI_SUB_CLASS = #{busiSubClass,jdbcType=VARCHAR},            CLIENT_CHECK_FLAG = #{clientCheckFlag,jdbcType=VARCHAR},            URL = #{url,jdbcType=VARCHAR}        where MESSAGE_CODE = #{messageCode,jdbcType=VARCHAR}
+          and SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR}
+          and MESSAGE_TYPE = #{messageType,jdbcType=VARCHAR}
+    </update>
+</mapper>
