@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+   	<property name="LOG_PATH" value="logs"/>
+    
+    <!-- 定义通用日志格式 -->
+    <property name="LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%mdc{caseId}] %-5level [%logger{0}.%method - %msg]%n"/>
+    
+    <!-- 公共的日志文件设置 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/common.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 根据batchId分离日志的SiftingAppender -->
+    <appender name="SIFTING_FILE" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <!-- 指定用于区分的MDC key -->
+        <discriminator>
+            <key>batchId</key>
+            <defaultValue>unknown</defaultValue>
+        </discriminator>
+        
+        <sift>
+            <!-- 为每个batchId创建一个RollingFileAppender -->
+            <appender name="FILE-${batchId}" class="ch.qos.logback.core.FileAppender">
+                <!-- 方案1：按batchId分目录 -->
+                <!-- <file>${LOG_PATH}/batch/${batchId}/batch.log</file> -->
+                
+                <!-- 方案2：按batchId分文件 -->
+                <file>${LOG_PATH}/batch-${batchId}.log</file>
+                
+                <encoder>
+                    <pattern>${LOG_PATTERN}</pattern>
+                </encoder>
+                
+            </appender>
+        </sift>
+    </appender>
+
+    <!-- 控制台输出（可选） -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] [%mdc{batchId}] [%mdc{caseId}] %-5level %logger{36}:%3L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 根日志配置 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <!-- 特定包的特殊配置（可选） -->
+    <logger name="com.dcits" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="SIFTING_FILE" />
+    </logger>
+
+</configuration>
