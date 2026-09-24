@@ -1,0 +1,33 @@
+server:
+  port: 8980
+  tomcat:
+    uri-encoding: UTF-8
+    
+spring:
+  application:
+    name: blacklist-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://ecs:3306/hxdemo?allowMultiQueries=true
+    username: hxdemo
+    password: hxdemo
+    #url: jdbc:mysql://1.2.3.4:3306/ai_coding_wks?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    #username: root
+    #password: root    
+    name: MYSQL
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initialSize: 2
+      minIdle: 2
+      maxActive: 10
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      testWhileIdle: false
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true	
