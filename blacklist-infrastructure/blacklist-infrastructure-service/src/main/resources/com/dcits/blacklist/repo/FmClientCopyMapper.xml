@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.blacklist.repo.FmClientCopyMapper">
+    <resultMap id="BaseResultMap" type="com.dcits.blacklist.entity.FmClientCopy">
+        <id column="CLIENT_NO" property="clientNo" jdbcType="VARCHAR" />
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+        <result column="TAX_RESIDENT_FLAG" property="taxResidentFlag" jdbcType="VARCHAR" />
+        <result column="CLASS_LEVEL" property="classLevel" jdbcType="VARCHAR" />
+        <result column="STATE" property="state" jdbcType="VARCHAR" />
+        <result column="DOCUMENT_TYPE" property="documentType" jdbcType="VARCHAR" />
+        <result column="LAST_UPD_TIMESTAMP" property="lastUpdTimestamp" jdbcType="VARCHAR" />
+        <result column="INDUSTRY" property="industry" jdbcType="VARCHAR" />
+        <result column="PREF_FLAG" property="prefFlag" jdbcType="VARCHAR" />
+        <result column="CLIENT_VERIFICATION_RESULT" property="clientVerificationResult" jdbcType="VARCHAR" />
+        <result column="COUNTRY_LOC" property="countryLoc" jdbcType="VARCHAR" />
+        <result column="CATEGORY_TYPE" property="categoryType" jdbcType="VARCHAR" />
+        <result column="REP_DOCUMENT_ID" property="repDocumentId" jdbcType="VARCHAR" />
+        <result column="CORPORATION_FLAG" property="corporationFlag" jdbcType="VARCHAR" />
+        <result column="POSTAL_CODE" property="postalCode" jdbcType="VARCHAR" />
+        <result column="CLIENT_NAME" property="clientName" jdbcType="VARCHAR" />
+        <result column="INDUSTRY_LEVEL" property="industryLevel" jdbcType="VARCHAR" />
+        <result column="GHO_CUSTOMER_CLASS" property="ghoCustomerClass" jdbcType="VARCHAR" />
+        <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+        <result column="CLIENT_SHORT" property="clientShort" jdbcType="VARCHAR" />
+        <result column="CITY" property="city" jdbcType="VARCHAR" />
+        <result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+        <result column="BUSINESS_SCOPE" property="businessScope" jdbcType="VARCHAR" />
+        <result column="CONTACT_TYPE" property="contactType" jdbcType="VARCHAR" />
+        <result column="LEGAL_REP" property="legalRep" jdbcType="VARCHAR" />
+        <result column="INTERNAL_IND_FLAG" property="internalIndFlag" jdbcType="VARCHAR" />
+        <result column="ISS_PLACE" property="issPlace" jdbcType="VARCHAR" />
+        <result column="REP_EXPIRY_DATE" property="repExpiryDate" jdbcType="TIMESTAMP" />
+        <result column="CORP_FLAG" property="corpFlag" jdbcType="VARCHAR" />
+        <result column="OCCUPATION_CODE" property="occupationCode" jdbcType="VARCHAR" />
+        <result column="WRN_FLAG" property="wrnFlag" jdbcType="VARCHAR" />
+        <result column="CREATE_TIMESTAMP" property="createTimestamp" jdbcType="VARCHAR" />
+        <result column="ISS_DATE" property="issDate" jdbcType="TIMESTAMP" />
+        <result column="EN_CLIENT_NAME" property="enClientName" jdbcType="VARCHAR" />
+        <result column="SEX" property="sex" jdbcType="VARCHAR" />
+        <result column="BRANCH_INNER_FLAG" property="branchInnerFlag" jdbcType="VARCHAR" />
+        <result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" />
+        <result column="CLIENT_TYPE" property="clientType" jdbcType="VARCHAR" />
+        <result column="MATURITY_DATE" property="maturityDate" jdbcType="TIMESTAMP" />
+        <result column="BIRTH_DATE" property="birthDate" jdbcType="TIMESTAMP" />
+        <result column="TAX_FLAG" property="taxFlag" jdbcType="VARCHAR" />
+        <result column="CLIENT_CLASS" property="clientClass" jdbcType="VARCHAR" />
+        <result column="DOCUMENT_ID" property="documentId" jdbcType="VARCHAR" />
+        <result column="CR_RATING" property="crRating" jdbcType="VARCHAR" />
+        <result column="CLIENT_STATUS" property="clientStatus" jdbcType="VARCHAR" />
+        <result column="IS_INDIVIDUAL" property="isIndividual" jdbcType="VARCHAR" />
+        <result column="INLAND_OFFSHORE" property="inlandOffshore" jdbcType="VARCHAR" />
+        <result column="CLIENT_INDICATOR" property="clientIndicator" jdbcType="VARCHAR" />
+        <result column="NATION" property="nation" jdbcType="VARCHAR" />
+        <result column="CTRL_BRANCH" property="ctrlBranch" jdbcType="VARCHAR" />
+        <result column="SPOKEN_LANGUAGE" property="spokenLanguage" jdbcType="VARCHAR" />
+        <result column="ISS_COUNTRY" property="issCountry" jdbcType="VARCHAR" />
+        <result column="REP_DOCUMENT_TYPE" property="repDocumentType" jdbcType="VARCHAR" />
+        <result column="RESIDENT_FLAG" property="residentFlag" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
+        CLIENT_NO,        ADDRESS,        TAX_RESIDENT_FLAG,        CLASS_LEVEL,        STATE,        DOCUMENT_TYPE,        LAST_UPD_TIMESTAMP,        INDUSTRY,        PREF_FLAG,        CLIENT_VERIFICATION_RESULT,        COUNTRY_LOC,        CATEGORY_TYPE,        REP_DOCUMENT_ID,        CORPORATION_FLAG,        POSTAL_CODE,        CLIENT_NAME,        INDUSTRY_LEVEL,        GHO_CUSTOMER_CLASS,        EDUCATION,        CLIENT_SHORT,        CITY,        CONTACT_TEL,        BUSINESS_SCOPE,        CONTACT_TYPE,        LEGAL_REP,        INTERNAL_IND_FLAG,        ISS_PLACE,        REP_EXPIRY_DATE,        CORP_FLAG,        OCCUPATION_CODE,        WRN_FLAG,        CREATE_TIMESTAMP,        ISS_DATE,        EN_CLIENT_NAME,        SEX,        BRANCH_INNER_FLAG,        MOBILE_PHONE,        CLIENT_TYPE,        MATURITY_DATE,        BIRTH_DATE,        TAX_FLAG,        CLIENT_CLASS,        DOCUMENT_ID,        CR_RATING,        CLIENT_STATUS,        IS_INDIVIDUAL,        INLAND_OFFSHORE,        CLIENT_INDICATOR,        NATION,        CTRL_BRANCH,        SPOKEN_LANGUAGE,        ISS_COUNTRY,        REP_DOCUMENT_TYPE,        RESIDENT_FLAG    </sql>
+
+    <select id="selectByExample" parameterType="com.dcits.blacklist.entity.FmClientCopyExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from FM_CLIENT_COPY
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from FM_CLIENT_COPY
+        where CLIENT_NO = #{clientNo,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete from FM_CLIENT_COPY
+        where CLIENT_NO = #{clientNo,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.dcits.blacklist.entity.FmClientCopyExample">
+        delete from FM_CLIENT_COPY
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.dcits.blacklist.entity.FmClientCopy">
+        insert into FM_CLIENT_COPY
+        (
+            CLIENT_NO,            ADDRESS,            TAX_RESIDENT_FLAG,            CLASS_LEVEL,            STATE,            DOCUMENT_TYPE,            LAST_UPD_TIMESTAMP,            INDUSTRY,            PREF_FLAG,            CLIENT_VERIFICATION_RESULT,            COUNTRY_LOC,            CATEGORY_TYPE,            REP_DOCUMENT_ID,            CORPORATION_FLAG,            POSTAL_CODE,            CLIENT_NAME,            INDUSTRY_LEVEL,            GHO_CUSTOMER_CLASS,            EDUCATION,            CLIENT_SHORT,            CITY,            CONTACT_TEL,            BUSINESS_SCOPE,            CONTACT_TYPE,            LEGAL_REP,            INTERNAL_IND_FLAG,            ISS_PLACE,            REP_EXPIRY_DATE,            CORP_FLAG,            OCCUPATION_CODE,            WRN_FLAG,            CREATE_TIMESTAMP,            ISS_DATE,            EN_CLIENT_NAME,            SEX,            BRANCH_INNER_FLAG,            MOBILE_PHONE,            CLIENT_TYPE,            MATURITY_DATE,            BIRTH_DATE,            TAX_FLAG,            CLIENT_CLASS,            DOCUMENT_ID,            CR_RATING,            CLIENT_STATUS,            IS_INDIVIDUAL,            INLAND_OFFSHORE,            CLIENT_INDICATOR,            NATION,            CTRL_BRANCH,            SPOKEN_LANGUAGE,            ISS_COUNTRY,            REP_DOCUMENT_TYPE,            RESIDENT_FLAG        )
+        values
+        (
+            #{clientNo,jdbcType=VARCHAR},            #{address,jdbcType=VARCHAR},            #{taxResidentFlag,jdbcType=VARCHAR},            #{classLevel,jdbcType=VARCHAR},            #{state,jdbcType=VARCHAR},            #{documentType,jdbcType=VARCHAR},            #{lastUpdTimestamp,jdbcType=VARCHAR},            #{industry,jdbcType=VARCHAR},            #{prefFlag,jdbcType=VARCHAR},            #{clientVerificationResult,jdbcType=VARCHAR},            #{countryLoc,jdbcType=VARCHAR},            #{categoryType,jdbcType=VARCHAR},            #{repDocumentId,jdbcType=VARCHAR},            #{corporationFlag,jdbcType=VARCHAR},            #{postalCode,jdbcType=VARCHAR},            #{clientName,jdbcType=VARCHAR},            #{industryLevel,jdbcType=VARCHAR},            #{ghoCustomerClass,jdbcType=VARCHAR},            #{education,jdbcType=VARCHAR},            #{clientShort,jdbcType=VARCHAR},            #{city,jdbcType=VARCHAR},            #{contactTel,jdbcType=VARCHAR},            #{businessScope,jdbcType=VARCHAR},            #{contactType,jdbcType=VARCHAR},            #{legalRep,jdbcType=VARCHAR},            #{internalIndFlag,jdbcType=VARCHAR},            #{issPlace,jdbcType=VARCHAR},            #{repExpiryDate,jdbcType=TIMESTAMP},            #{corpFlag,jdbcType=VARCHAR},            #{occupationCode,jdbcType=VARCHAR},            #{wrnFlag,jdbcType=VARCHAR},            #{createTimestamp,jdbcType=VARCHAR},            #{issDate,jdbcType=TIMESTAMP},            #{enClientName,jdbcType=VARCHAR},            #{sex,jdbcType=VARCHAR},            #{branchInnerFlag,jdbcType=VARCHAR},            #{mobilePhone,jdbcType=VARCHAR},            #{clientType,jdbcType=VARCHAR},            #{maturityDate,jdbcType=TIMESTAMP},            #{birthDate,jdbcType=TIMESTAMP},            #{taxFlag,jdbcType=VARCHAR},            #{clientClass,jdbcType=VARCHAR},            #{documentId,jdbcType=VARCHAR},            #{crRating,jdbcType=VARCHAR},            #{clientStatus,jdbcType=VARCHAR},            #{isIndividual,jdbcType=VARCHAR},            #{inlandOffshore,jdbcType=VARCHAR},            #{clientIndicator,jdbcType=VARCHAR},            #{nation,jdbcType=VARCHAR},            #{ctrlBranch,jdbcType=VARCHAR},            #{spokenLanguage,jdbcType=VARCHAR},            #{issCountry,jdbcType=VARCHAR},            #{repDocumentType,jdbcType=VARCHAR},            #{residentFlag,jdbcType=VARCHAR}        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.dcits.blacklist.entity.FmClientCopy">
+        insert into FM_CLIENT_COPY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="clientNo != null">
+                CLIENT_NO,
+            </if>
+            <if test="address != null">
+                ADDRESS,
+            </if>
+            <if test="taxResidentFlag != null">
+                TAX_RESIDENT_FLAG,
+            </if>
+            <if test="classLevel != null">
+                CLASS_LEVEL,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+            <if test="documentType != null">
+                DOCUMENT_TYPE,
+            </if>
+            <if test="lastUpdTimestamp != null">
+                LAST_UPD_TIMESTAMP,
+            </if>
+            <if test="industry != null">
+                INDUSTRY,
+            </if>
+            <if test="prefFlag != null">
+                PREF_FLAG,
+            </if>
+            <if test="clientVerificationResult != null">
+                CLIENT_VERIFICATION_RESULT,
+            </if>
+            <if test="countryLoc != null">
+                COUNTRY_LOC,
+            </if>
+            <if test="categoryType != null">
+                CATEGORY_TYPE,
+            </if>
+            <if test="repDocumentId != null">
+                REP_DOCUMENT_ID,
+            </if>
+            <if test="corporationFlag != null">
+                CORPORATION_FLAG,
+            </if>
+            <if test="postalCode != null">
+                POSTAL_CODE,
+            </if>
+            <if test="clientName != null">
+                CLIENT_NAME,
+            </if>
+            <if test="industryLevel != null">
+                INDUSTRY_LEVEL,
+            </if>
+            <if test="ghoCustomerClass != null">
+                GHO_CUSTOMER_CLASS,
+            </if>
+            <if test="education != null">
+                EDUCATION,
+            </if>
+            <if test="clientShort != null">
+                CLIENT_SHORT,
+            </if>
+            <if test="city != null">
+                CITY,
+            </if>
+            <if test="contactTel != null">
+                CONTACT_TEL,
+            </if>
+            <if test="businessScope != null">
+                BUSINESS_SCOPE,
+            </if>
+            <if test="contactType != null">
+                CONTACT_TYPE,
+            </if>
+            <if test="legalRep != null">
+                LEGAL_REP,
+            </if>
+            <if test="internalIndFlag != null">
+                INTERNAL_IND_FLAG,
+            </if>
+            <if test="issPlace != null">
+                ISS_PLACE,
+            </if>
+            <if test="repExpiryDate != null">
+                REP_EXPIRY_DATE,
+            </if>
+            <if test="corpFlag != null">
+                CORP_FLAG,
+            </if>
+            <if test="occupationCode != null">
+                OCCUPATION_CODE,
+            </if>
+            <if test="wrnFlag != null">
+                WRN_FLAG,
+            </if>
+            <if test="createTimestamp != null">
+                CREATE_TIMESTAMP,
+            </if>
+            <if test="issDate != null">
+                ISS_DATE,
+            </if>
+            <if test="enClientName != null">
+                EN_CLIENT_NAME,
+            </if>
+            <if test="sex != null">
+                SEX,
+            </if>
+            <if test="branchInnerFlag != null">
+                BRANCH_INNER_FLAG,
+            </if>
+            <if test="mobilePhone != null">
+                MOBILE_PHONE,
+            </if>
+            <if test="clientType != null">
+                CLIENT_TYPE,
+            </if>
+            <if test="maturityDate != null">
+                MATURITY_DATE,
+            </if>
+            <if test="birthDate != null">
+                BIRTH_DATE,
+            </if>
+            <if test="taxFlag != null">
+                TAX_FLAG,
+            </if>
+            <if test="clientClass != null">
+                CLIENT_CLASS,
+            </if>
+            <if test="documentId != null">
+                DOCUMENT_ID,
+            </if>
+            <if test="crRating != null">
+                CR_RATING,
+            </if>
+            <if test="clientStatus != null">
+                CLIENT_STATUS,
+            </if>
+            <if test="isIndividual != null">
+                IS_INDIVIDUAL,
+            </if>
+            <if test="inlandOffshore != null">
+                INLAND_OFFSHORE,
+            </if>
+            <if test="clientIndicator != null">
+                CLIENT_INDICATOR,
+            </if>
+            <if test="nation != null">
+                NATION,
+            </if>
+            <if test="ctrlBranch != null">
+                CTRL_BRANCH,
+            </if>
+            <if test="spokenLanguage != null">
+                SPOKEN_LANGUAGE,
+            </if>
+            <if test="issCountry != null">
+                ISS_COUNTRY,
+            </if>
+            <if test="repDocumentType != null">
+                REP_DOCUMENT_TYPE,
+            </if>
+            <if test="residentFlag != null">
+                RESIDENT_FLAG,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="clientNo != null">
+                #{clientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="taxResidentFlag != null">
+                #{taxResidentFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="classLevel != null">
+                #{classLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="documentType != null">
+                #{documentType,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdTimestamp != null">
+                #{lastUpdTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                #{industry,jdbcType=VARCHAR},
+            </if>
+            <if test="prefFlag != null">
+                #{prefFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="clientVerificationResult != null">
+                #{clientVerificationResult,jdbcType=VARCHAR},
+            </if>
+            <if test="countryLoc != null">
+                #{countryLoc,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryType != null">
+                #{categoryType,jdbcType=VARCHAR},
+            </if>
+            <if test="repDocumentId != null">
+                #{repDocumentId,jdbcType=VARCHAR},
+            </if>
+            <if test="corporationFlag != null">
+                #{corporationFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="postalCode != null">
+                #{postalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="clientName != null">
+                #{clientName,jdbcType=VARCHAR},
+            </if>
+            <if test="industryLevel != null">
+                #{industryLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="ghoCustomerClass != null">
+                #{ghoCustomerClass,jdbcType=VARCHAR},
+            </if>
+            <if test="education != null">
+                #{education,jdbcType=VARCHAR},
+            </if>
+            <if test="clientShort != null">
+                #{clientShort,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="contactTel != null">
+                #{contactTel,jdbcType=VARCHAR},
+            </if>
+            <if test="businessScope != null">
+                #{businessScope,jdbcType=VARCHAR},
+            </if>
+            <if test="contactType != null">
+                #{contactType,jdbcType=VARCHAR},
+            </if>
+            <if test="legalRep != null">
+                #{legalRep,jdbcType=VARCHAR},
+            </if>
+            <if test="internalIndFlag != null">
+                #{internalIndFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="issPlace != null">
+                #{issPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="repExpiryDate != null">
+                #{repExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="corpFlag != null">
+                #{corpFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="occupationCode != null">
+                #{occupationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="wrnFlag != null">
+                #{wrnFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="createTimestamp != null">
+                #{createTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="issDate != null">
+                #{issDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enClientName != null">
+                #{enClientName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="branchInnerFlag != null">
+                #{branchInnerFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="clientType != null">
+                #{clientType,jdbcType=VARCHAR},
+            </if>
+            <if test="maturityDate != null">
+                #{maturityDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="birthDate != null">
+                #{birthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="taxFlag != null">
+                #{taxFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="clientClass != null">
+                #{clientClass,jdbcType=VARCHAR},
+            </if>
+            <if test="documentId != null">
+                #{documentId,jdbcType=VARCHAR},
+            </if>
+            <if test="crRating != null">
+                #{crRating,jdbcType=VARCHAR},
+            </if>
+            <if test="clientStatus != null">
+                #{clientStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="isIndividual != null">
+                #{isIndividual,jdbcType=VARCHAR},
+            </if>
+            <if test="inlandOffshore != null">
+                #{inlandOffshore,jdbcType=VARCHAR},
+            </if>
+            <if test="clientIndicator != null">
+                #{clientIndicator,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null">
+                #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="ctrlBranch != null">
+                #{ctrlBranch,jdbcType=VARCHAR},
+            </if>
+            <if test="spokenLanguage != null">
+                #{spokenLanguage,jdbcType=VARCHAR},
+            </if>
+            <if test="issCountry != null">
+                #{issCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="repDocumentType != null">
+                #{repDocumentType,jdbcType=VARCHAR},
+            </if>
+            <if test="residentFlag != null">
+                #{residentFlag,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.dcits.blacklist.entity.FmClientCopyExample" resultType="java.lang.Long">
+        select count(*) from FM_CLIENT_COPY
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map">
+        update FM_CLIENT_COPY
+        <set>
+            <if test="row.clientNo != null">
+                CLIENT_NO = #{row.clientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="row.address != null">
+                ADDRESS = #{row.address,jdbcType=VARCHAR},
+            </if>
+            <if test="row.taxResidentFlag != null">
+                TAX_RESIDENT_FLAG = #{row.taxResidentFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.classLevel != null">
+                CLASS_LEVEL = #{row.classLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="row.state != null">
+                STATE = #{row.state,jdbcType=VARCHAR},
+            </if>
+            <if test="row.documentType != null">
+                DOCUMENT_TYPE = #{row.documentType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.lastUpdTimestamp != null">
+                LAST_UPD_TIMESTAMP = #{row.lastUpdTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="row.industry != null">
+                INDUSTRY = #{row.industry,jdbcType=VARCHAR},
+            </if>
+            <if test="row.prefFlag != null">
+                PREF_FLAG = #{row.prefFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientVerificationResult != null">
+                CLIENT_VERIFICATION_RESULT = #{row.clientVerificationResult,jdbcType=VARCHAR},
+            </if>
+            <if test="row.countryLoc != null">
+                COUNTRY_LOC = #{row.countryLoc,jdbcType=VARCHAR},
+            </if>
+            <if test="row.categoryType != null">
+                CATEGORY_TYPE = #{row.categoryType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.repDocumentId != null">
+                REP_DOCUMENT_ID = #{row.repDocumentId,jdbcType=VARCHAR},
+            </if>
+            <if test="row.corporationFlag != null">
+                CORPORATION_FLAG = #{row.corporationFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.postalCode != null">
+                POSTAL_CODE = #{row.postalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientName != null">
+                CLIENT_NAME = #{row.clientName,jdbcType=VARCHAR},
+            </if>
+            <if test="row.industryLevel != null">
+                INDUSTRY_LEVEL = #{row.industryLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="row.ghoCustomerClass != null">
+                GHO_CUSTOMER_CLASS = #{row.ghoCustomerClass,jdbcType=VARCHAR},
+            </if>
+            <if test="row.education != null">
+                EDUCATION = #{row.education,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientShort != null">
+                CLIENT_SHORT = #{row.clientShort,jdbcType=VARCHAR},
+            </if>
+            <if test="row.city != null">
+                CITY = #{row.city,jdbcType=VARCHAR},
+            </if>
+            <if test="row.contactTel != null">
+                CONTACT_TEL = #{row.contactTel,jdbcType=VARCHAR},
+            </if>
+            <if test="row.businessScope != null">
+                BUSINESS_SCOPE = #{row.businessScope,jdbcType=VARCHAR},
+            </if>
+            <if test="row.contactType != null">
+                CONTACT_TYPE = #{row.contactType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.legalRep != null">
+                LEGAL_REP = #{row.legalRep,jdbcType=VARCHAR},
+            </if>
+            <if test="row.internalIndFlag != null">
+                INTERNAL_IND_FLAG = #{row.internalIndFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.issPlace != null">
+                ISS_PLACE = #{row.issPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="row.repExpiryDate != null">
+                REP_EXPIRY_DATE = #{row.repExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.corpFlag != null">
+                CORP_FLAG = #{row.corpFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.occupationCode != null">
+                OCCUPATION_CODE = #{row.occupationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.wrnFlag != null">
+                WRN_FLAG = #{row.wrnFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.createTimestamp != null">
+                CREATE_TIMESTAMP = #{row.createTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="row.issDate != null">
+                ISS_DATE = #{row.issDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.enClientName != null">
+                EN_CLIENT_NAME = #{row.enClientName,jdbcType=VARCHAR},
+            </if>
+            <if test="row.sex != null">
+                SEX = #{row.sex,jdbcType=VARCHAR},
+            </if>
+            <if test="row.branchInnerFlag != null">
+                BRANCH_INNER_FLAG = #{row.branchInnerFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.mobilePhone != null">
+                MOBILE_PHONE = #{row.mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientType != null">
+                CLIENT_TYPE = #{row.clientType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.maturityDate != null">
+                MATURITY_DATE = #{row.maturityDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.birthDate != null">
+                BIRTH_DATE = #{row.birthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.taxFlag != null">
+                TAX_FLAG = #{row.taxFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientClass != null">
+                CLIENT_CLASS = #{row.clientClass,jdbcType=VARCHAR},
+            </if>
+            <if test="row.documentId != null">
+                DOCUMENT_ID = #{row.documentId,jdbcType=VARCHAR},
+            </if>
+            <if test="row.crRating != null">
+                CR_RATING = #{row.crRating,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientStatus != null">
+                CLIENT_STATUS = #{row.clientStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="row.isIndividual != null">
+                IS_INDIVIDUAL = #{row.isIndividual,jdbcType=VARCHAR},
+            </if>
+            <if test="row.inlandOffshore != null">
+                INLAND_OFFSHORE = #{row.inlandOffshore,jdbcType=VARCHAR},
+            </if>
+            <if test="row.clientIndicator != null">
+                CLIENT_INDICATOR = #{row.clientIndicator,jdbcType=VARCHAR},
+            </if>
+            <if test="row.nation != null">
+                NATION = #{row.nation,jdbcType=VARCHAR},
+            </if>
+            <if test="row.ctrlBranch != null">
+                CTRL_BRANCH = #{row.ctrlBranch,jdbcType=VARCHAR},
+            </if>
+            <if test="row.spokenLanguage != null">
+                SPOKEN_LANGUAGE = #{row.spokenLanguage,jdbcType=VARCHAR},
+            </if>
+            <if test="row.issCountry != null">
+                ISS_COUNTRY = #{row.issCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="row.repDocumentType != null">
+                REP_DOCUMENT_TYPE = #{row.repDocumentType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.residentFlag != null">
+                RESIDENT_FLAG = #{row.residentFlag,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map">
+        update FM_CLIENT_COPY
+        set
+            CLIENT_NO = #{row.clientNo,jdbcType=VARCHAR},            ADDRESS = #{row.address,jdbcType=VARCHAR},            TAX_RESIDENT_FLAG = #{row.taxResidentFlag,jdbcType=VARCHAR},            CLASS_LEVEL = #{row.classLevel,jdbcType=VARCHAR},            STATE = #{row.state,jdbcType=VARCHAR},            DOCUMENT_TYPE = #{row.documentType,jdbcType=VARCHAR},            LAST_UPD_TIMESTAMP = #{row.lastUpdTimestamp,jdbcType=VARCHAR},            INDUSTRY = #{row.industry,jdbcType=VARCHAR},            PREF_FLAG = #{row.prefFlag,jdbcType=VARCHAR},            CLIENT_VERIFICATION_RESULT = #{row.clientVerificationResult,jdbcType=VARCHAR},            COUNTRY_LOC = #{row.countryLoc,jdbcType=VARCHAR},            CATEGORY_TYPE = #{row.categoryType,jdbcType=VARCHAR},            REP_DOCUMENT_ID = #{row.repDocumentId,jdbcType=VARCHAR},            CORPORATION_FLAG = #{row.corporationFlag,jdbcType=VARCHAR},            POSTAL_CODE = #{row.postalCode,jdbcType=VARCHAR},            CLIENT_NAME = #{row.clientName,jdbcType=VARCHAR},            INDUSTRY_LEVEL = #{row.industryLevel,jdbcType=VARCHAR},            GHO_CUSTOMER_CLASS = #{row.ghoCustomerClass,jdbcType=VARCHAR},            EDUCATION = #{row.education,jdbcType=VARCHAR},            CLIENT_SHORT = #{row.clientShort,jdbcType=VARCHAR},            CITY = #{row.city,jdbcType=VARCHAR},            CONTACT_TEL = #{row.contactTel,jdbcType=VARCHAR},            BUSINESS_SCOPE = #{row.businessScope,jdbcType=VARCHAR},            CONTACT_TYPE = #{row.contactType,jdbcType=VARCHAR},            LEGAL_REP = #{row.legalRep,jdbcType=VARCHAR},            INTERNAL_IND_FLAG = #{row.internalIndFlag,jdbcType=VARCHAR},            ISS_PLACE = #{row.issPlace,jdbcType=VARCHAR},            REP_EXPIRY_DATE = #{row.repExpiryDate,jdbcType=TIMESTAMP},            CORP_FLAG = #{row.corpFlag,jdbcType=VARCHAR},            OCCUPATION_CODE = #{row.occupationCode,jdbcType=VARCHAR},            WRN_FLAG = #{row.wrnFlag,jdbcType=VARCHAR},            CREATE_TIMESTAMP = #{row.createTimestamp,jdbcType=VARCHAR},            ISS_DATE = #{row.issDate,jdbcType=TIMESTAMP},            EN_CLIENT_NAME = #{row.enClientName,jdbcType=VARCHAR},            SEX = #{row.sex,jdbcType=VARCHAR},            BRANCH_INNER_FLAG = #{row.branchInnerFlag,jdbcType=VARCHAR},            MOBILE_PHONE = #{row.mobilePhone,jdbcType=VARCHAR},            CLIENT_TYPE = #{row.clientType,jdbcType=VARCHAR},            MATURITY_DATE = #{row.maturityDate,jdbcType=TIMESTAMP},            BIRTH_DATE = #{row.birthDate,jdbcType=TIMESTAMP},            TAX_FLAG = #{row.taxFlag,jdbcType=VARCHAR},            CLIENT_CLASS = #{row.clientClass,jdbcType=VARCHAR},            DOCUMENT_ID = #{row.documentId,jdbcType=VARCHAR},            CR_RATING = #{row.crRating,jdbcType=VARCHAR},            CLIENT_STATUS = #{row.clientStatus,jdbcType=VARCHAR},            IS_INDIVIDUAL = #{row.isIndividual,jdbcType=VARCHAR},            INLAND_OFFSHORE = #{row.inlandOffshore,jdbcType=VARCHAR},            CLIENT_INDICATOR = #{row.clientIndicator,jdbcType=VARCHAR},            NATION = #{row.nation,jdbcType=VARCHAR},            CTRL_BRANCH = #{row.ctrlBranch,jdbcType=VARCHAR},            SPOKEN_LANGUAGE = #{row.spokenLanguage,jdbcType=VARCHAR},            ISS_COUNTRY = #{row.issCountry,jdbcType=VARCHAR},            REP_DOCUMENT_TYPE = #{row.repDocumentType,jdbcType=VARCHAR},            RESIDENT_FLAG = #{row.residentFlag,jdbcType=VARCHAR}        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.dcits.blacklist.entity.FmClientCopy">
+        update FM_CLIENT_COPY
+        <set>
+            <if test="address != null">
+                ADDRESS = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="taxResidentFlag != null">
+                TAX_RESIDENT_FLAG = #{taxResidentFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="classLevel != null">
+                CLASS_LEVEL = #{classLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="documentType != null">
+                DOCUMENT_TYPE = #{documentType,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdTimestamp != null">
+                LAST_UPD_TIMESTAMP = #{lastUpdTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                INDUSTRY = #{industry,jdbcType=VARCHAR},
+            </if>
+            <if test="prefFlag != null">
+                PREF_FLAG = #{prefFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="clientVerificationResult != null">
+                CLIENT_VERIFICATION_RESULT = #{clientVerificationResult,jdbcType=VARCHAR},
+            </if>
+            <if test="countryLoc != null">
+                COUNTRY_LOC = #{countryLoc,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryType != null">
+                CATEGORY_TYPE = #{categoryType,jdbcType=VARCHAR},
+            </if>
+            <if test="repDocumentId != null">
+                REP_DOCUMENT_ID = #{repDocumentId,jdbcType=VARCHAR},
+            </if>
+            <if test="corporationFlag != null">
+                CORPORATION_FLAG = #{corporationFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="postalCode != null">
+                POSTAL_CODE = #{postalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="clientName != null">
+                CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+            </if>
+            <if test="industryLevel != null">
+                INDUSTRY_LEVEL = #{industryLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="ghoCustomerClass != null">
+                GHO_CUSTOMER_CLASS = #{ghoCustomerClass,jdbcType=VARCHAR},
+            </if>
+            <if test="education != null">
+                EDUCATION = #{education,jdbcType=VARCHAR},
+            </if>
+            <if test="clientShort != null">
+                CLIENT_SHORT = #{clientShort,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                CITY = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="contactTel != null">
+                CONTACT_TEL = #{contactTel,jdbcType=VARCHAR},
+            </if>
+            <if test="businessScope != null">
+                BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
+            </if>
+            <if test="contactType != null">
+                CONTACT_TYPE = #{contactType,jdbcType=VARCHAR},
+            </if>
+            <if test="legalRep != null">
+                LEGAL_REP = #{legalRep,jdbcType=VARCHAR},
+            </if>
+            <if test="internalIndFlag != null">
+                INTERNAL_IND_FLAG = #{internalIndFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="issPlace != null">
+                ISS_PLACE = #{issPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="repExpiryDate != null">
+                REP_EXPIRY_DATE = #{repExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="corpFlag != null">
+                CORP_FLAG = #{corpFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="occupationCode != null">
+                OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="wrnFlag != null">
+                WRN_FLAG = #{wrnFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="createTimestamp != null">
+                CREATE_TIMESTAMP = #{createTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="issDate != null">
+                ISS_DATE = #{issDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enClientName != null">
+                EN_CLIENT_NAME = #{enClientName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                SEX = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="branchInnerFlag != null">
+                BRANCH_INNER_FLAG = #{branchInnerFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="clientType != null">
+                CLIENT_TYPE = #{clientType,jdbcType=VARCHAR},
+            </if>
+            <if test="maturityDate != null">
+                MATURITY_DATE = #{maturityDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="birthDate != null">
+                BIRTH_DATE = #{birthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="taxFlag != null">
+                TAX_FLAG = #{taxFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="clientClass != null">
+                CLIENT_CLASS = #{clientClass,jdbcType=VARCHAR},
+            </if>
+            <if test="documentId != null">
+                DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+            </if>
+            <if test="crRating != null">
+                CR_RATING = #{crRating,jdbcType=VARCHAR},
+            </if>
+            <if test="clientStatus != null">
+                CLIENT_STATUS = #{clientStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="isIndividual != null">
+                IS_INDIVIDUAL = #{isIndividual,jdbcType=VARCHAR},
+            </if>
+            <if test="inlandOffshore != null">
+                INLAND_OFFSHORE = #{inlandOffshore,jdbcType=VARCHAR},
+            </if>
+            <if test="clientIndicator != null">
+                CLIENT_INDICATOR = #{clientIndicator,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null">
+                NATION = #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="ctrlBranch != null">
+                CTRL_BRANCH = #{ctrlBranch,jdbcType=VARCHAR},
+            </if>
+            <if test="spokenLanguage != null">
+                SPOKEN_LANGUAGE = #{spokenLanguage,jdbcType=VARCHAR},
+            </if>
+            <if test="issCountry != null">
+                ISS_COUNTRY = #{issCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="repDocumentType != null">
+                REP_DOCUMENT_TYPE = #{repDocumentType,jdbcType=VARCHAR},
+            </if>
+            <if test="residentFlag != null">
+                RESIDENT_FLAG = #{residentFlag,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where CLIENT_NO = #{clientNo,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.dcits.blacklist.entity.FmClientCopy">
+        update FM_CLIENT_COPY
+        set
+            ADDRESS = #{address,jdbcType=VARCHAR},            TAX_RESIDENT_FLAG = #{taxResidentFlag,jdbcType=VARCHAR},            CLASS_LEVEL = #{classLevel,jdbcType=VARCHAR},            STATE = #{state,jdbcType=VARCHAR},            DOCUMENT_TYPE = #{documentType,jdbcType=VARCHAR},            LAST_UPD_TIMESTAMP = #{lastUpdTimestamp,jdbcType=VARCHAR},            INDUSTRY = #{industry,jdbcType=VARCHAR},            PREF_FLAG = #{prefFlag,jdbcType=VARCHAR},            CLIENT_VERIFICATION_RESULT = #{clientVerificationResult,jdbcType=VARCHAR},            COUNTRY_LOC = #{countryLoc,jdbcType=VARCHAR},            CATEGORY_TYPE = #{categoryType,jdbcType=VARCHAR},            REP_DOCUMENT_ID = #{repDocumentId,jdbcType=VARCHAR},            CORPORATION_FLAG = #{corporationFlag,jdbcType=VARCHAR},            POSTAL_CODE = #{postalCode,jdbcType=VARCHAR},            CLIENT_NAME = #{clientName,jdbcType=VARCHAR},            INDUSTRY_LEVEL = #{industryLevel,jdbcType=VARCHAR},            GHO_CUSTOMER_CLASS = #{ghoCustomerClass,jdbcType=VARCHAR},            EDUCATION = #{education,jdbcType=VARCHAR},            CLIENT_SHORT = #{clientShort,jdbcType=VARCHAR},            CITY = #{city,jdbcType=VARCHAR},            CONTACT_TEL = #{contactTel,jdbcType=VARCHAR},            BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},            CONTACT_TYPE = #{contactType,jdbcType=VARCHAR},            LEGAL_REP = #{legalRep,jdbcType=VARCHAR},            INTERNAL_IND_FLAG = #{internalIndFlag,jdbcType=VARCHAR},            ISS_PLACE = #{issPlace,jdbcType=VARCHAR},            REP_EXPIRY_DATE = #{repExpiryDate,jdbcType=TIMESTAMP},            CORP_FLAG = #{corpFlag,jdbcType=VARCHAR},            OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR},            WRN_FLAG = #{wrnFlag,jdbcType=VARCHAR},            CREATE_TIMESTAMP = #{createTimestamp,jdbcType=VARCHAR},            ISS_DATE = #{issDate,jdbcType=TIMESTAMP},            EN_CLIENT_NAME = #{enClientName,jdbcType=VARCHAR},            SEX = #{sex,jdbcType=VARCHAR},            BRANCH_INNER_FLAG = #{branchInnerFlag,jdbcType=VARCHAR},            MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},            CLIENT_TYPE = #{clientType,jdbcType=VARCHAR},            MATURITY_DATE = #{maturityDate,jdbcType=TIMESTAMP},            BIRTH_DATE = #{birthDate,jdbcType=TIMESTAMP},            TAX_FLAG = #{taxFlag,jdbcType=VARCHAR},            CLIENT_CLASS = #{clientClass,jdbcType=VARCHAR},            DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},            CR_RATING = #{crRating,jdbcType=VARCHAR},            CLIENT_STATUS = #{clientStatus,jdbcType=VARCHAR},            IS_INDIVIDUAL = #{isIndividual,jdbcType=VARCHAR},            INLAND_OFFSHORE = #{inlandOffshore,jdbcType=VARCHAR},            CLIENT_INDICATOR = #{clientIndicator,jdbcType=VARCHAR},            NATION = #{nation,jdbcType=VARCHAR},            CTRL_BRANCH = #{ctrlBranch,jdbcType=VARCHAR},            SPOKEN_LANGUAGE = #{spokenLanguage,jdbcType=VARCHAR},            ISS_COUNTRY = #{issCountry,jdbcType=VARCHAR},            REP_DOCUMENT_TYPE = #{repDocumentType,jdbcType=VARCHAR},            RESIDENT_FLAG = #{residentFlag,jdbcType=VARCHAR}        where CLIENT_NO = #{clientNo,jdbcType=VARCHAR}
+    </update>
+</mapper>
