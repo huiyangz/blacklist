@@ -1,0 +1,222 @@
+package com.dcits.blacklist.service.utils;
+
+import com.dcits.blacklist.entity.FmClientCopy;
+import com.dcits.blacklist.entity.FmClientCopyExample;
+import com.dcits.blacklist.facade.eo.FmClientCopyEO;
+import com.dcits.blacklist.enums.TaxResidentFlag;
+import com.dcits.blacklist.enums.ClassLevel;
+import com.dcits.blacklist.enums.State;
+import com.dcits.blacklist.enums.DocumentType;
+import com.dcits.blacklist.enums.Industry;
+import com.dcits.blacklist.enums.ClientVerificationResult;
+import com.dcits.blacklist.enums.CountryLoc;
+import com.dcits.blacklist.enums.CategoryType;
+import com.dcits.blacklist.enums.IndustryLevel;
+import com.dcits.blacklist.enums.Education;
+import com.dcits.blacklist.enums.City;
+import com.dcits.blacklist.enums.ContactType;
+import com.dcits.blacklist.enums.OccupationCode;
+import com.dcits.blacklist.enums.Sex;
+import com.dcits.blacklist.enums.ClientType;
+import com.dcits.blacklist.enums.TaxFlag;
+import com.dcits.blacklist.enums.ClientClass;
+import com.dcits.blacklist.enums.CrRating;
+import com.dcits.blacklist.enums.ClientStatus;
+import com.dcits.blacklist.enums.ClientIndicator;
+import com.dcits.blacklist.enums.Nation;
+import com.dcits.blacklist.enums.AcctBranch;
+import com.dcits.blacklist.enums.SpokenLanguage;
+import com.dcits.blacklist.enums.IssCountry;
+import com.dcits.blacklist.enums.DocumentType;
+
+public final class FmClientCopyValueUtil {
+    private FmClientCopyValueUtil() {
+    }
+
+    public static FmClientCopyEO entityToEo(FmClientCopy entity) {
+        if (entity == null) {
+            return null;
+        }
+        FmClientCopyEO eo = new FmClientCopyEO();
+        eo.setClientNo(entity.getClientNo());
+        eo.setAddress(entity.getAddress());
+        eo.setTaxResidentFlag(TaxResidentFlag.byValue(entity.getTaxResidentFlag()));
+        eo.setClassLevel(ClassLevel.byValue(entity.getClassLevel()));
+        eo.setState(State.byValue(entity.getState()));
+        eo.setDocumentType(DocumentType.byValue(entity.getDocumentType()));
+        eo.setLastUpdTimestamp(entity.getLastUpdTimestamp());
+        eo.setIndustry(Industry.byValue(entity.getIndustry()));
+        eo.setPrefFlag(entity.getPrefFlag());
+        eo.setClientVerificationResult(ClientVerificationResult.byValue(entity.getClientVerificationResult()));
+        eo.setCountryLoc(CountryLoc.byValue(entity.getCountryLoc()));
+        eo.setCategoryType(CategoryType.byValue(entity.getCategoryType()));
+        eo.setRepDocumentId(entity.getRepDocumentId());
+        eo.setCorporationFlag(entity.getCorporationFlag());
+        eo.setPostalCode(entity.getPostalCode());
+        eo.setClientName(entity.getClientName());
+        eo.setIndustryLevel(IndustryLevel.byValue(entity.getIndustryLevel()));
+        eo.setGhoCustomerClass(entity.getGhoCustomerClass());
+        eo.setEducation(Education.byValue(entity.getEducation()));
+        eo.setClientShort(entity.getClientShort());
+        eo.setCity(City.byValue(entity.getCity()));
+        eo.setContactTel(entity.getContactTel());
+        eo.setBusinessScope(entity.getBusinessScope());
+        eo.setContactType(ContactType.byValue(entity.getContactType()));
+        eo.setLegalRep(entity.getLegalRep());
+        eo.setInternalIndFlag(entity.getInternalIndFlag());
+        eo.setIssPlace(entity.getIssPlace());
+        eo.setRepExpiryDate(entity.getRepExpiryDate());
+        eo.setCorpFlag(entity.getCorpFlag());
+        eo.setOccupationCode(OccupationCode.byValue(entity.getOccupationCode()));
+        eo.setWrnFlag(entity.getWrnFlag());
+        eo.setCreateTimestamp(entity.getCreateTimestamp());
+        eo.setIssDate(entity.getIssDate());
+        eo.setEnClientName(entity.getEnClientName());
+        eo.setSex(Sex.byValue(entity.getSex()));
+        eo.setBranchInnerFlag(entity.getBranchInnerFlag());
+        eo.setMobilePhone(entity.getMobilePhone());
+        eo.setClientType(ClientType.byValue(entity.getClientType()));
+        eo.setMaturityDate(entity.getMaturityDate());
+        eo.setBirthDate(entity.getBirthDate());
+        eo.setTaxFlag(TaxFlag.byValue(entity.getTaxFlag()));
+        eo.setClientClass(ClientClass.byValue(entity.getClientClass()));
+        eo.setDocumentId(entity.getDocumentId());
+        eo.setCrRating(CrRating.byValue(entity.getCrRating()));
+        eo.setClientStatus(ClientStatus.byValue(entity.getClientStatus()));
+        eo.setIsIndividual(entity.getIsIndividual());
+        eo.setInlandOffshore(entity.getInlandOffshore());
+        eo.setClientIndicator(ClientIndicator.byValue(entity.getClientIndicator()));
+        eo.setNation(Nation.byValue(entity.getNation()));
+        eo.setCtrlBranch(AcctBranch.byValue(entity.getCtrlBranch()));
+        eo.setSpokenLanguage(SpokenLanguage.byValue(entity.getSpokenLanguage()));
+        eo.setIssCountry(IssCountry.byValue(entity.getIssCountry()));
+        eo.setRepDocumentType(DocumentType.byValue(entity.getRepDocumentType()));
+        eo.setResidentFlag(entity.getResidentFlag());
+        return eo;
+    }
+
+    public static FmClientCopy eoToEntity(FmClientCopyEO eo) {
+        if (eo == null) {
+            return null;
+        }
+        FmClientCopy entity = new FmClientCopy();
+        entity.setClientNo(eo.getClientNo());
+        entity.setAddress(eo.getAddress());
+        entity.setTaxResidentFlag(eo.getTaxResidentFlag() == null ? null : eo.getTaxResidentFlag().getValue());
+        entity.setClassLevel(eo.getClassLevel() == null ? null : eo.getClassLevel().getValue());
+        entity.setState(eo.getState() == null ? null : eo.getState().getValue());
+        entity.setDocumentType(eo.getDocumentType() == null ? null : eo.getDocumentType().getValue());
+        entity.setLastUpdTimestamp(eo.getLastUpdTimestamp());
+        entity.setIndustry(eo.getIndustry() == null ? null : eo.getIndustry().getValue());
+        entity.setPrefFlag(eo.getPrefFlag());
+        entity.setClientVerificationResult(eo.getClientVerificationResult() == null ? null : eo.getClientVerificationResult().getValue());
+        entity.setCountryLoc(eo.getCountryLoc() == null ? null : eo.getCountryLoc().getValue());
+        entity.setCategoryType(eo.getCategoryType() == null ? null : eo.getCategoryType().getValue());
+        entity.setRepDocumentId(eo.getRepDocumentId());
+        entity.setCorporationFlag(eo.getCorporationFlag());
+        entity.setPostalCode(eo.getPostalCode());
+        entity.setClientName(eo.getClientName());
+        entity.setIndustryLevel(eo.getIndustryLevel() == null ? null : eo.getIndustryLevel().getValue());
+        entity.setGhoCustomerClass(eo.getGhoCustomerClass());
+        entity.setEducation(eo.getEducation() == null ? null : eo.getEducation().getValue());
+        entity.setClientShort(eo.getClientShort());
+        entity.setCity(eo.getCity() == null ? null : eo.getCity().getValue());
+        entity.setContactTel(eo.getContactTel());
+        entity.setBusinessScope(eo.getBusinessScope());
+        entity.setContactType(eo.getContactType() == null ? null : eo.getContactType().getValue());
+        entity.setLegalRep(eo.getLegalRep());
+        entity.setInternalIndFlag(eo.getInternalIndFlag());
+        entity.setIssPlace(eo.getIssPlace());
+        entity.setRepExpiryDate(eo.getRepExpiryDate());
+        entity.setCorpFlag(eo.getCorpFlag());
+        entity.setOccupationCode(eo.getOccupationCode() == null ? null : eo.getOccupationCode().getValue());
+        entity.setWrnFlag(eo.getWrnFlag());
+        entity.setCreateTimestamp(eo.getCreateTimestamp());
+        entity.setIssDate(eo.getIssDate());
+        entity.setEnClientName(eo.getEnClientName());
+        entity.setSex(eo.getSex() == null ? null : eo.getSex().getValue());
+        entity.setBranchInnerFlag(eo.getBranchInnerFlag());
+        entity.setMobilePhone(eo.getMobilePhone());
+        entity.setClientType(eo.getClientType() == null ? null : eo.getClientType().getValue());
+        entity.setMaturityDate(eo.getMaturityDate());
+        entity.setBirthDate(eo.getBirthDate());
+        entity.setTaxFlag(eo.getTaxFlag() == null ? null : eo.getTaxFlag().getValue());
+        entity.setClientClass(eo.getClientClass() == null ? null : eo.getClientClass().getValue());
+        entity.setDocumentId(eo.getDocumentId());
+        entity.setCrRating(eo.getCrRating() == null ? null : eo.getCrRating().getValue());
+        entity.setClientStatus(eo.getClientStatus() == null ? null : eo.getClientStatus().getValue());
+        entity.setIsIndividual(eo.getIsIndividual());
+        entity.setInlandOffshore(eo.getInlandOffshore());
+        entity.setClientIndicator(eo.getClientIndicator() == null ? null : eo.getClientIndicator().getValue());
+        entity.setNation(eo.getNation() == null ? null : eo.getNation().getValue());
+        entity.setCtrlBranch(eo.getCtrlBranch() == null ? null : eo.getCtrlBranch().getValue());
+        entity.setSpokenLanguage(eo.getSpokenLanguage() == null ? null : eo.getSpokenLanguage().getValue());
+        entity.setIssCountry(eo.getIssCountry() == null ? null : eo.getIssCountry().getValue());
+        entity.setRepDocumentType(eo.getRepDocumentType() == null ? null : eo.getRepDocumentType().getValue());
+        entity.setResidentFlag(eo.getResidentFlag());
+        return entity;
+    }
+
+    public static FmClientCopyExample eoToEntityExample(FmClientCopyEO eo) {
+        if (eo == null) {
+            return null;
+        }
+        FmClientCopyExample example = new FmClientCopyExample();
+        FmClientCopyExample.Criteria criteria = example.createCriteria();
+        if (eo.getClientNo() != null) criteria.andClientNoEqualTo(eo.getClientNo());
+        if (eo.getAddress() != null) criteria.andAddressEqualTo(eo.getAddress());
+        if (eo.getTaxResidentFlag() != null) criteria.andTaxResidentFlagEqualTo(eo.getTaxResidentFlag().getValue());
+        if (eo.getClassLevel() != null) criteria.andClassLevelEqualTo(eo.getClassLevel().getValue());
+        if (eo.getState() != null) criteria.andStateEqualTo(eo.getState().getValue());
+        if (eo.getDocumentType() != null) criteria.andDocumentTypeEqualTo(eo.getDocumentType().getValue());
+        if (eo.getLastUpdTimestamp() != null) criteria.andLastUpdTimestampEqualTo(eo.getLastUpdTimestamp());
+        if (eo.getIndustry() != null) criteria.andIndustryEqualTo(eo.getIndustry().getValue());
+        if (eo.getPrefFlag() != null) criteria.andPrefFlagEqualTo(eo.getPrefFlag());
+        if (eo.getClientVerificationResult() != null) criteria.andClientVerificationResultEqualTo(eo.getClientVerificationResult().getValue());
+        if (eo.getCountryLoc() != null) criteria.andCountryLocEqualTo(eo.getCountryLoc().getValue());
+        if (eo.getCategoryType() != null) criteria.andCategoryTypeEqualTo(eo.getCategoryType().getValue());
+        if (eo.getRepDocumentId() != null) criteria.andRepDocumentIdEqualTo(eo.getRepDocumentId());
+        if (eo.getCorporationFlag() != null) criteria.andCorporationFlagEqualTo(eo.getCorporationFlag());
+        if (eo.getPostalCode() != null) criteria.andPostalCodeEqualTo(eo.getPostalCode());
+        if (eo.getClientName() != null) criteria.andClientNameEqualTo(eo.getClientName());
+        if (eo.getIndustryLevel() != null) criteria.andIndustryLevelEqualTo(eo.getIndustryLevel().getValue());
+        if (eo.getGhoCustomerClass() != null) criteria.andGhoCustomerClassEqualTo(eo.getGhoCustomerClass());
+        if (eo.getEducation() != null) criteria.andEducationEqualTo(eo.getEducation().getValue());
+        if (eo.getClientShort() != null) criteria.andClientShortEqualTo(eo.getClientShort());
+        if (eo.getCity() != null) criteria.andCityEqualTo(eo.getCity().getValue());
+        if (eo.getContactTel() != null) criteria.andContactTelEqualTo(eo.getContactTel());
+        if (eo.getBusinessScope() != null) criteria.andBusinessScopeEqualTo(eo.getBusinessScope());
+        if (eo.getContactType() != null) criteria.andContactTypeEqualTo(eo.getContactType().getValue());
+        if (eo.getLegalRep() != null) criteria.andLegalRepEqualTo(eo.getLegalRep());
+        if (eo.getInternalIndFlag() != null) criteria.andInternalIndFlagEqualTo(eo.getInternalIndFlag());
+        if (eo.getIssPlace() != null) criteria.andIssPlaceEqualTo(eo.getIssPlace());
+        if (eo.getRepExpiryDate() != null) criteria.andRepExpiryDateEqualTo(eo.getRepExpiryDate());
+        if (eo.getCorpFlag() != null) criteria.andCorpFlagEqualTo(eo.getCorpFlag());
+        if (eo.getOccupationCode() != null) criteria.andOccupationCodeEqualTo(eo.getOccupationCode().getValue());
+        if (eo.getWrnFlag() != null) criteria.andWrnFlagEqualTo(eo.getWrnFlag());
+        if (eo.getCreateTimestamp() != null) criteria.andCreateTimestampEqualTo(eo.getCreateTimestamp());
+        if (eo.getIssDate() != null) criteria.andIssDateEqualTo(eo.getIssDate());
+        if (eo.getEnClientName() != null) criteria.andEnClientNameEqualTo(eo.getEnClientName());
+        if (eo.getSex() != null) criteria.andSexEqualTo(eo.getSex().getValue());
+        if (eo.getBranchInnerFlag() != null) criteria.andBranchInnerFlagEqualTo(eo.getBranchInnerFlag());
+        if (eo.getMobilePhone() != null) criteria.andMobilePhoneEqualTo(eo.getMobilePhone());
+        if (eo.getClientType() != null) criteria.andClientTypeEqualTo(eo.getClientType().getValue());
+        if (eo.getMaturityDate() != null) criteria.andMaturityDateEqualTo(eo.getMaturityDate());
+        if (eo.getBirthDate() != null) criteria.andBirthDateEqualTo(eo.getBirthDate());
+        if (eo.getTaxFlag() != null) criteria.andTaxFlagEqualTo(eo.getTaxFlag().getValue());
+        if (eo.getClientClass() != null) criteria.andClientClassEqualTo(eo.getClientClass().getValue());
+        if (eo.getDocumentId() != null) criteria.andDocumentIdEqualTo(eo.getDocumentId());
+        if (eo.getCrRating() != null) criteria.andCrRatingEqualTo(eo.getCrRating().getValue());
+        if (eo.getClientStatus() != null) criteria.andClientStatusEqualTo(eo.getClientStatus().getValue());
+        if (eo.getIsIndividual() != null) criteria.andIsIndividualEqualTo(eo.getIsIndividual());
+        if (eo.getInlandOffshore() != null) criteria.andInlandOffshoreEqualTo(eo.getInlandOffshore());
+        if (eo.getClientIndicator() != null) criteria.andClientIndicatorEqualTo(eo.getClientIndicator().getValue());
+        if (eo.getNation() != null) criteria.andNationEqualTo(eo.getNation().getValue());
+        if (eo.getCtrlBranch() != null) criteria.andCtrlBranchEqualTo(eo.getCtrlBranch().getValue());
+        if (eo.getSpokenLanguage() != null) criteria.andSpokenLanguageEqualTo(eo.getSpokenLanguage().getValue());
+        if (eo.getIssCountry() != null) criteria.andIssCountryEqualTo(eo.getIssCountry().getValue());
+        if (eo.getRepDocumentType() != null) criteria.andRepDocumentTypeEqualTo(eo.getRepDocumentType().getValue());
+        if (eo.getResidentFlag() != null) criteria.andResidentFlagEqualTo(eo.getResidentFlag());
+        return example;
+    }
+}

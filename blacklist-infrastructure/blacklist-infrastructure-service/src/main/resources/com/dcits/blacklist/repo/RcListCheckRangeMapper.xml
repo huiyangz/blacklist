@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.blacklist.repo.RcListCheckRangeMapper">
+    <resultMap id="BaseResultMap" type="com.dcits.blacklist.entity.RcListCheckRange">
+        <id column="SEQ_NO" property="seqNo" jdbcType="VARCHAR" />
+        <result column="LIST_TYPE" property="listType" jdbcType="VARCHAR" />
+        <result column="RULE_ID" property="ruleId" jdbcType="VARCHAR" />
+        <result column="PROGRAM_ID" property="programId" jdbcType="VARCHAR" />
+        <result column="CREATE_TIMESTAMP" property="createTimestamp" jdbcType="VARCHAR" />
+        <result column="LAST_UPD_TIMESTAMP" property="lastUpdTimestamp" jdbcType="VARCHAR" />
+        <result column="SOURCE_TYPE" property="sourceType" jdbcType="VARCHAR" />
+        <result column="EVENT_TYPE" property="eventType" jdbcType="VARCHAR" />
+        <result column="TRAN_TYPE" property="tranType" jdbcType="VARCHAR" />
+        <result column="SERVICE_CODE" property="serviceCode" jdbcType="VARCHAR" />
+        <result column="MESSAGE_TYPE" property="messageType" jdbcType="VARCHAR" />
+        <result column="MESSAGE_CODE" property="messageCode" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
+        LIST_TYPE,        RULE_ID,        SEQ_NO,        PROGRAM_ID,        CREATE_TIMESTAMP,        LAST_UPD_TIMESTAMP,        SOURCE_TYPE,        EVENT_TYPE,        TRAN_TYPE,        SERVICE_CODE,        MESSAGE_TYPE,        MESSAGE_CODE    </sql>
+
+    <select id="selectByExample" parameterType="com.dcits.blacklist.entity.RcListCheckRangeExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from RC_LIST_CHECK_RANGE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from RC_LIST_CHECK_RANGE
+        where SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete from RC_LIST_CHECK_RANGE
+        where SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.dcits.blacklist.entity.RcListCheckRangeExample">
+        delete from RC_LIST_CHECK_RANGE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.dcits.blacklist.entity.RcListCheckRange">
+        insert into RC_LIST_CHECK_RANGE
+        (
+            LIST_TYPE,            RULE_ID,            SEQ_NO,            PROGRAM_ID,            CREATE_TIMESTAMP,            LAST_UPD_TIMESTAMP,            SOURCE_TYPE,            EVENT_TYPE,            TRAN_TYPE,            SERVICE_CODE,            MESSAGE_TYPE,            MESSAGE_CODE        )
+        values
+        (
+            #{listType,jdbcType=VARCHAR},            #{ruleId,jdbcType=VARCHAR},            #{seqNo,jdbcType=VARCHAR},            #{programId,jdbcType=VARCHAR},            #{createTimestamp,jdbcType=VARCHAR},            #{lastUpdTimestamp,jdbcType=VARCHAR},            #{sourceType,jdbcType=VARCHAR},            #{eventType,jdbcType=VARCHAR},            #{tranType,jdbcType=VARCHAR},            #{serviceCode,jdbcType=VARCHAR},            #{messageType,jdbcType=VARCHAR},            #{messageCode,jdbcType=VARCHAR}        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.dcits.blacklist.entity.RcListCheckRange">
+        insert into RC_LIST_CHECK_RANGE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="listType != null">
+                LIST_TYPE,
+            </if>
+            <if test="ruleId != null">
+                RULE_ID,
+            </if>
+            <if test="seqNo != null">
+                SEQ_NO,
+            </if>
+            <if test="programId != null">
+                PROGRAM_ID,
+            </if>
+            <if test="createTimestamp != null">
+                CREATE_TIMESTAMP,
+            </if>
+            <if test="lastUpdTimestamp != null">
+                LAST_UPD_TIMESTAMP,
+            </if>
+            <if test="sourceType != null">
+                SOURCE_TYPE,
+            </if>
+            <if test="eventType != null">
+                EVENT_TYPE,
+            </if>
+            <if test="tranType != null">
+                TRAN_TYPE,
+            </if>
+            <if test="serviceCode != null">
+                SERVICE_CODE,
+            </if>
+            <if test="messageType != null">
+                MESSAGE_TYPE,
+            </if>
+            <if test="messageCode != null">
+                MESSAGE_CODE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="listType != null">
+                #{listType,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleId != null">
+                #{ruleId,jdbcType=VARCHAR},
+            </if>
+            <if test="seqNo != null">
+                #{seqNo,jdbcType=VARCHAR},
+            </if>
+            <if test="programId != null">
+                #{programId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTimestamp != null">
+                #{createTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdTimestamp != null">
+                #{lastUpdTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="sourceType != null">
+                #{sourceType,jdbcType=VARCHAR},
+            </if>
+            <if test="eventType != null">
+                #{eventType,jdbcType=VARCHAR},
+            </if>
+            <if test="tranType != null">
+                #{tranType,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCode != null">
+                #{serviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="messageType != null">
+                #{messageType,jdbcType=VARCHAR},
+            </if>
+            <if test="messageCode != null">
+                #{messageCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.dcits.blacklist.entity.RcListCheckRangeExample" resultType="java.lang.Long">
+        select count(*) from RC_LIST_CHECK_RANGE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map">
+        update RC_LIST_CHECK_RANGE
+        <set>
+            <if test="row.listType != null">
+                LIST_TYPE = #{row.listType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.ruleId != null">
+                RULE_ID = #{row.ruleId,jdbcType=VARCHAR},
+            </if>
+            <if test="row.seqNo != null">
+                SEQ_NO = #{row.seqNo,jdbcType=VARCHAR},
+            </if>
+            <if test="row.programId != null">
+                PROGRAM_ID = #{row.programId,jdbcType=VARCHAR},
+            </if>
+            <if test="row.createTimestamp != null">
+                CREATE_TIMESTAMP = #{row.createTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="row.lastUpdTimestamp != null">
+                LAST_UPD_TIMESTAMP = #{row.lastUpdTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="row.sourceType != null">
+                SOURCE_TYPE = #{row.sourceType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.eventType != null">
+                EVENT_TYPE = #{row.eventType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.tranType != null">
+                TRAN_TYPE = #{row.tranType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.serviceCode != null">
+                SERVICE_CODE = #{row.serviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.messageType != null">
+                MESSAGE_TYPE = #{row.messageType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.messageCode != null">
+                MESSAGE_CODE = #{row.messageCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map">
+        update RC_LIST_CHECK_RANGE
+        set
+            LIST_TYPE = #{row.listType,jdbcType=VARCHAR},            RULE_ID = #{row.ruleId,jdbcType=VARCHAR},            SEQ_NO = #{row.seqNo,jdbcType=VARCHAR},            PROGRAM_ID = #{row.programId,jdbcType=VARCHAR},            CREATE_TIMESTAMP = #{row.createTimestamp,jdbcType=VARCHAR},            LAST_UPD_TIMESTAMP = #{row.lastUpdTimestamp,jdbcType=VARCHAR},            SOURCE_TYPE = #{row.sourceType,jdbcType=VARCHAR},            EVENT_TYPE = #{row.eventType,jdbcType=VARCHAR},            TRAN_TYPE = #{row.tranType,jdbcType=VARCHAR},            SERVICE_CODE = #{row.serviceCode,jdbcType=VARCHAR},            MESSAGE_TYPE = #{row.messageType,jdbcType=VARCHAR},            MESSAGE_CODE = #{row.messageCode,jdbcType=VARCHAR}        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.dcits.blacklist.entity.RcListCheckRange">
+        update RC_LIST_CHECK_RANGE
+        <set>
+            <if test="listType != null">
+                LIST_TYPE = #{listType,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleId != null">
+                RULE_ID = #{ruleId,jdbcType=VARCHAR},
+            </if>
+            <if test="programId != null">
+                PROGRAM_ID = #{programId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTimestamp != null">
+                CREATE_TIMESTAMP = #{createTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdTimestamp != null">
+                LAST_UPD_TIMESTAMP = #{lastUpdTimestamp,jdbcType=VARCHAR},
+            </if>
+            <if test="sourceType != null">
+                SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR},
+            </if>
+            <if test="eventType != null">
+                EVENT_TYPE = #{eventType,jdbcType=VARCHAR},
+            </if>
+            <if test="tranType != null">
+                TRAN_TYPE = #{tranType,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCode != null">
+                SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="messageType != null">
+                MESSAGE_TYPE = #{messageType,jdbcType=VARCHAR},
+            </if>
+            <if test="messageCode != null">
+                MESSAGE_CODE = #{messageCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.dcits.blacklist.entity.RcListCheckRange">
+        update RC_LIST_CHECK_RANGE
+        set
+            LIST_TYPE = #{listType,jdbcType=VARCHAR},            RULE_ID = #{ruleId,jdbcType=VARCHAR},            PROGRAM_ID = #{programId,jdbcType=VARCHAR},            CREATE_TIMESTAMP = #{createTimestamp,jdbcType=VARCHAR},            LAST_UPD_TIMESTAMP = #{lastUpdTimestamp,jdbcType=VARCHAR},            SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR},            EVENT_TYPE = #{eventType,jdbcType=VARCHAR},            TRAN_TYPE = #{tranType,jdbcType=VARCHAR},            SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR},            MESSAGE_TYPE = #{messageType,jdbcType=VARCHAR},            MESSAGE_CODE = #{messageCode,jdbcType=VARCHAR}        where SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+    </update>
+</mapper>
